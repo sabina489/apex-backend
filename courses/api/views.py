@@ -7,6 +7,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     UpdateAPIView,
 )
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from courses.api.paginations import LargeResultsSetPagination
@@ -35,8 +36,9 @@ class CourseListAPIView(ListAPIView):
     queryset = Course.objects.all()
     filterset_class = CourseFilter
     pagination_class = LargeResultsSetPagination
-    # filterset_fields = ['price', 'category']
-    # ordering = ['course']
+    filterset_fields = ["price", "category"]
+    ordering_fields = ["price", "category"]
+    paginator = PageNumberPagination()
 
 
 class CourseCreateAPIView(CreateAPIView):
