@@ -6,10 +6,12 @@ from courses.models import Course, CourseCategory
 class CourseTestCase(TestCase):
     """Models test for Courses."""
 
-    def CourseNew(self, name="test", status="course", price="0.0"):
+    def CourseNew(
+        self, name="test", status="course", link="https://www.google.com", price="0.0"
+    ):
         courseCategory = CourseCategory.objects.create(name="category")
         return Course.objects.create(
-            name=name, status=status, price=price, category=courseCategory
+            name=name, status=status, price=price, link=link, category=courseCategory
         )
 
     def test_Course_creation(self):
